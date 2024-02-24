@@ -1,17 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { createRoot } from 'react-dom/client';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function Greeting(){
+  const [locale , setLocale] = React.useState('id');
+
+  const changeToId = () => setLocale('id');
+  const changeToEn= () => setLocale('en');
+
+  return(
+    <div style={{height:'100vh',display:'flex', justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+      {locale === 'id' ?( 
+        <>
+        <p style={{fontFamily:'monospace',fontSize:'34px', fontWeight:'bold'}}>Selamat Pagi!</p>
+        <button onClick={changeToEn} style={{width:'250px',height:'100px',backgroundColor:'salmon',borderStyle:'none',fontFamily:'monospace'}}>Translate</button>
+        </>
+      ):(
+        <>
+        <p style={{fontFamily:'monospace',fontSize:'34px', fontWeight:'bold'}}>Good Morning!</p>
+        <button onClick={changeToId} style={{width:'250px',height:'100px',backgroundColor:'salmon',borderStyle:'none',fontFamily:'monospace'}}>Terjemahkan</button>
+        </>
+      )}
+    </div>
+  )
+}
+
+const root = createRoot(document.getElementById('root'));
+root.render(<Greeting />);
+
+
